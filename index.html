@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>La Maison Orientale — Restaurant Syrien | Quaregnon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Scheherazade+New:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+```
+:root {
+  --gold: #C9974A;
+  --gold-light: #E8C27A;
+  --gold-dark: #8B6228;
+  --ivory: #FAF6EE;
+  --cream: #F3EBD8;
+  --dark: #1A120A;
+  --dark-mid: #2E1F0F;
+  --text: #3D2A14;
+  --text-light: #7A5C38;
+  --red: #8B1A1A;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--dark);
+  color: var(--ivory);
+  overflow-x: hidden;
+}
+
+/* ─── NOISE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.4;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 4rem;
+  background: linear-gradient(to bottom, rgba(26,18,10,0.97), rgba(26,18,10,0));
+  transition: background 0.4s;
+}
+nav.scrolled {
+  background: rgba(26,18,10,0.97);
+  border-bottom: 1px solid rgba(201,151,74,0.2);
+}
+.nav-logo {
+  font-family: 'Scheherazade New', serif;
+  font-size: 1.6rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 300;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--gold);
+  color: var(--dark) !important;
+  padding: 0.55rem 1.4rem;
+  border-radius: 1px;
+  font-weight: 400 !important;
+  transition: background 0.3s !important;
+}
+.nav-cta:hover { background: var(--gold-light) !important; }
+.nav-cta::after { display: none !important; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 70%, rgba(201,151,74,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 30%, rgba(139,26,26,0.08) 0%, transparent 60%),
+    linear-gradient(160deg, #0d0804 0%, #1a0f06 40%, #221608 70%, #0f0904 100%);
+}
+
+/* Ornament SVG lines */
+.hero-ornament {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.hero-ornament svg {
+  width: 90vw;
+  max-width: 900px;
+  opacity: 0.12;
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+  animation: heroFade 1.4s ease both;
+}
+
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-arabic {
+  font-family: 'Scheherazade New', serif;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  color: var(--gold);
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.04em;
+  animation: heroFade 1.4s 0.1s ease both;
+  opacity: 0;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  font-weight: 300;
+  color: var(--ivory);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  animation: heroFade 1.4s 0.25s ease both;
+  opacity: 0;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.hero-sub {
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 2.5rem;
+  animation: heroFade 1.4s 0.4s ease both;
+  opacity: 0;
+  font-weight: 300;
+}
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  animation: heroFade 1.4s 0.5s ease both;
+  opacity: 0;
+}
+.hero-divider span { width: 60px; height: 1px; background: var(--gold); opacity: 0.5; }
+.hero-divider i { color: var(--gold); font-size: 0.5rem; }
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: heroFade 1.4s 0.6s ease both;
+  opacity: 0;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--dark);
+  padding: 0.85rem 2.2rem;
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: background 0.3s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-outline {
+  border: 1px solid rgba(201,151,74,0.5);
+  color: var(--gold);
+  padding: 0.85rem 2.2rem;
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 300;
+  transition: border-color 0.3s, background 0.3s;
+}
+.btn-outline:hover { border-color: var(--gold); background: rgba(201,151,74,0.08); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-light);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  animation: heroFade 1.4s 1s ease both;
+  opacity: 0;
+}
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ─── SECTION COMMONS ─── */
+section { position: relative; }
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+  font-weight: 300;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--ivory);
+}
+.section-title em { font-style: italic; color: var(--gold-light); }
+.gold-line {
+  width: 60px; height: 1px;
+  background: var(--gold);
+  margin: 1.5rem 0;
+}
+.section-text {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #B8A48A;
+  font-weight: 300;
+  max-width: 520px;
+}
+
+/* fade-in on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── INTRO STRIP ─── */
+.intro-strip {
+  background: var(--gold);
+  padding: 1.2rem 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.strip-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--dark);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.strip-icon { font-size: 1.1rem; }
+
+/* ─── STORY ─── */
+.story {
+  padding: 8rem 6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  background: var(--dark);
+}
+.story-visual {
+  position: relative;
+}
+.story-img-frame {
+  position: relative;
+  width: 100%;
+  padding-bottom: 120%;
+  background: var(--dark-mid);
+  overflow: hidden;
+}
+/* Decorative pattern instead of image */
+.story-img-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(201,151,74,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 70%, rgba(139,26,26,0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #1e1208, #2c1a08, #1a0f06);
+}
+.story-img-frame::after {
+  content: '🍽';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+  opacity: 0.15;
+}
+.story-ornament {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--gold);
+  opacity: 0.4;
+}
+.story-ornament2 {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--gold);
+  opacity: 0.4;
+}
+.arabesque-inner {
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(201,151,74,0.15);
+  pointer-events: none;
+}
+/* Pattern SVG overlay */
+.pattern-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9974A' fill-opacity='1'%3E%3Cpath d='M30 0L60 30L30 60L0 30z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.story-badge {
+  position: absolute;
+  bottom: -1.5rem;
+  right: 2rem;
+  background: var(--gold);
+  color: var(--dark);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  box-shadow: 0 0 40px rgba(201,151,74,0.3);
+}
+.story-badge .num { font-size: 1.8rem; font-weight: 600; line-height: 1; }
+.story-badge .lbl { font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ─── CUISINE DISPLAY ─── */
+.cuisine {
+  padding: 8rem 6rem;
+  background: #120d07;
+}
+.cuisine-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.cuisine-header .section-title { margin: 0 auto; }
+.cuisine-header .gold-line { margin: 1.5rem auto; }
+.cuisine-header .section-text { margin: 0 auto; text-align: center; }
+
+.dishes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.dish-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.dish-card:first-child { grid-column: 1 / 3; }
+
+.dish-visual {
+  width: 100%;
+  padding-bottom: 65%;
+  position: relative;
+  overflow: hidden;
+}
+.dish-card:first-child .dish-visual { padding-bottom: 55%; }
+
+.dish-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s ease;
+}
+.dish-card:hover .dish-bg { transform: scale(1.06); }
+
+/* Each dish gets a unique gradient */
+.dish-1 { background: #1a0d00; }
+.dish-2 { background: #1a0808; }
+.dish-3 { background: #0f1a08; }
+.dish-4 { background: #1a1008; }
+
+.dish-real-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.dish-card:hover .dish-real-img { transform: scale(1.06); }
+
+.dish-emoji {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  opacity: 0.2;
+}
+.dish-card:first-child .dish-emoji { font-size: 6rem; }
+
+.dish-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,6,2,0.95) 0%, rgba(10,6,2,0.3) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+}
+.dish-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--ivory);
+  margin-bottom: 0.3rem;
+}
+.dish-card:first-child .dish-name { font-size: 2.2rem; }
+.dish-desc {
+  font-size: 0.8rem;
+  color: #B8A48A;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.dish-tag {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  font-weight: 400;
+}
+
+/* ─── MENU PREVIEW ─── */
+.menu {
+  padding: 8rem 6rem;
+  background: var(--dark);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6rem;
+  align-items: start;
+}
+.menu-categories {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+.menu-cat {
+  padding: 0.4rem 1rem;
+  border: 1px solid rgba(201,151,74,0.3);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: all 0.3s;
+  background: transparent;
+}
+.menu-cat.active, .menu-cat:hover {
+  background: var(--gold);
+  color: var(--dark);
+  border-color: var(--gold);
+}
+
+.menu-items { display: flex; flex-direction: column; gap: 0; }
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1.3rem 0;
+  border-bottom: 1px solid rgba(201,151,74,0.1);
+  transition: border-color 0.3s;
+  cursor: pointer;
+}
+.menu-item:hover { border-color: rgba(201,151,74,0.35); }
+.menu-item-left { flex: 1; margin-right: 1rem; }
+.menu-item-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--ivory);
+  margin-bottom: 0.2rem;
+}
+.menu-item-desc {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  font-weight: 300;
+}
+.menu-item-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.menu-visual {
+  position: sticky;
+  top: 6rem;
+}
+.menu-feature-img {
+  width: 100%;
+  padding-bottom: 130%;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a0f06, #2e1a08);
+}
+.menu-feature-img::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 40% 40%, rgba(201,151,74,0.2), transparent 60%),
+    radial-gradient(ellipse at 70% 80%, rgba(139,26,26,0.15), transparent 50%);
+}
+.menu-feature-emoji {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8rem; opacity: 0.15;
+}
+.menu-feature-border {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(201,151,74,0.2);
+  pointer-events: none;
+}
+.menu-quote {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-left: 2px solid var(--gold);
+  background: rgba(201,151,74,0.04);
+}
+.menu-quote p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ivory);
+  line-height: 1.6;
+}
+.menu-quote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+/* ─── TESTIMONIALS ─── */
+.testimonials {
+  padding: 7rem 6rem;
+  background: #0d0906;
+  text-align: center;
+}
+.testimonials-header { margin-bottom: 4rem; }
+.testimonials-header .gold-line { margin: 1.5rem auto; }
+
+.stars { color: var(--gold); font-size: 1rem; letter-spacing: 0.15em; margin-bottom: 1rem; }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.testimonial-card {
+  background: rgba(201,151,74,0.04);
+  border: 1px solid rgba(201,151,74,0.12);
+  padding: 2rem;
+  text-align: left;
+  transition: border-color 0.3s, background 0.3s;
+}
+.testimonial-card:hover {
+  border-color: rgba(201,151,74,0.3);
+  background: rgba(201,151,74,0.07);
+}
+.testimonial-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ivory);
+  margin-bottom: 1.2rem;
+}
+.testimonial-author {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 300;
+}
+
+/* ─── SPICES / AMBIANCE ─── */
+.ambiance {
+  padding: 0;
+  height: 55vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ambiance-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,151,74,0.18) 0%, transparent 70%),
+    linear-gradient(160deg, #0d0804, #1f1208, #150d06, #0d0804);
+}
+.ambiance-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9974A'%3E%3Cpath d='M40 0L80 40L40 80L0 40z M40 10L70 40L40 70L10 40z' opacity='0.4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.ambiance-content {
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+}
+.ambiance-content .section-label { margin-bottom: 1.5rem; }
+.ambiance-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ivory);
+  max-width: 700px;
+  line-height: 1.4;
+}
+.ambiance-text strong { color: var(--gold); font-style: normal; font-weight: 400; }
+
+/* ─── INFO & RESERVATION ─── */
+.info {
+  padding: 8rem 6rem;
+  background: var(--dark);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+}
+.info-block { }
+.info-item {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+.info-icon {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(201,151,74,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+.info-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+.info-value {
+  font-size: 0.9rem;
+  color: #B8A48A;
+  line-height: 1.6;
+  font-weight: 300;
+}
+.info-value strong { color: var(--ivory); font-weight: 400; }
+
+.reservation-form { }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+.form-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.form-input, .form-select {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,151,74,0.2);
+  color: var(--ivory);
+  padding: 0.8rem 1rem;
+  font-size: 0.88rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus { border-color: var(--gold); }
+.form-input::placeholder { color: rgba(184,164,138,0.4); }
+.form-select option { background: var(--dark); }
+.form-submit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  padding: 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 0.5rem;
+}
+.form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* ─── MAP STRIP ─── */
+.map-strip {
+  background: #0a0604;
+  padding: 4rem 6rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(201,151,74,0.1);
+}
+.map-address {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: var(--ivory);
+  font-weight: 300;
+}
+.map-address span { color: var(--gold); }
+.map-cta { margin-left: auto; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #060402;
+  padding: 4rem 6rem 2rem;
+  border-top: 1px solid rgba(201,151,74,0.1);
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(201,151,74,0.1);
+}
+.footer-logo {
+  font-family: 'Scheherazade New', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+.footer-social { display: flex; gap: 0.8rem; }
+.social-link {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(201,151,74,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+}
+.social-link:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+
+.footer-col-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 0.7rem; }
+.footer-col ul li a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 300;
+  transition: color 0.3s;
+}
+.footer-col ul li a:hover { color: var(--gold); }
+
+.footer-bottom {
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-copy {
+  font-size: 0.75rem;
+  color: rgba(184,164,138,0.4);
+  font-weight: 300;
+}
+.footer-arabic {
+  font-family: 'Scheherazade New', serif;
+  font-size: 1.2rem;
+  color: rgba(201,151,74,0.3);
+}
+
+/* ─── TOAST ─── */
+.toast {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 1rem 1.8rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  z-index: 1000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 2rem; }
+  .nav-links { display: none; }
+  .story, .menu, .info { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
+  .cuisine { padding: 5rem 2rem; }
+  .dishes-grid { grid-template-columns: 1fr; }
+  .dish-card:first-child { grid-column: auto; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom, .map-strip, .info { padding-left: 2rem; padding-right: 2rem; }
+  footer { padding: 3rem 2rem 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .menu-visual { position: relative; top: 0; }
+  .testimonials { padding: 5rem 2rem; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav id="nav">
+  <a href="#" class="nav-logo">البيت الشرقي</a>
+  <ul class="nav-links">
+    <li><a href="#story">Notre Histoire</a></li>
+    <li><a href="#cuisine">Cuisine</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#reservation" class="nav-cta">Réserver</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ornament">
+    <svg viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="50" y="50" width="800" height="500" stroke="#C9974A" stroke-width="1"/>
+      <rect x="80" y="80" width="740" height="440" stroke="#C9974A" stroke-width="0.5"/>
+      <line x1="50" y1="50" x2="150" y2="150" stroke="#C9974A" stroke-width="0.5"/>
+      <line x1="850" y1="50" x2="750" y2="150" stroke="#C9974A" stroke-width="0.5"/>
+      <line x1="50" y1="550" x2="150" y2="450" stroke="#C9974A" stroke-width="0.5"/>
+      <line x1="850" y1="550" x2="750" y2="450" stroke="#C9974A" stroke-width="0.5"/>
+      <circle cx="450" cy="300" r="120" stroke="#C9974A" stroke-width="0.5"/>
+      <circle cx="450" cy="300" r="160" stroke="#C9974A" stroke-width="0.3"/>
+      <path d="M450 140 L490 180 L450 220 L410 180z" stroke="#C9974A" stroke-width="0.5" fill="none"/>
+      <path d="M450 380 L490 420 L450 460 L410 420z" stroke="#C9974A" stroke-width="0.5" fill="none"/>
+      <path d="M290 300 L330 260 L370 300 L330 340z" stroke="#C9974A" stroke-width="0.5" fill="none"/>
+      <path d="M530 300 L570 260 L610 300 L570 340z" stroke="#C9974A" stroke-width="0.5" fill="none"/>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <p class="hero-arabic">البيت الشرقي</p>
+    <h1 class="hero-title">La Maison <em>Orientale</em></h1>
+    <p class="hero-sub">Restaurant Syrien Authentique &nbsp;·&nbsp; Quaregnon, Belgique</p>
+    <div class="hero-divider">
+      <span></span>
+      <i>◆</i>
+      <span></span>
+    </div>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">Découvrir le Menu</a>
+      <a href="https://www.takeaway.com/be-fr/menu/la-maison-orientale" target="_blank" class="btn-outline" style="display:flex;align-items:center;gap:0.5rem;">🛵 Commander en ligne</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Défiler</span>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+
+<div class="intro-strip">
+  <div class="strip-item"><span class="strip-icon">🌿</span> Cuisine 100% Halal & Authentique</div>
+  <div class="strip-item"><span class="strip-icon">📍</span> Rue Jules Destrée 219, Quaregnon</div>
+  <div class="strip-item"><span class="strip-icon">📞</span> 0498 67 22 62</div>
+  <div class="strip-item"><span class="strip-icon">🕐</span> Ouvre à 12h00 · Fermé mardi</div>
+</div>
+
+<!-- STORY -->
+
+<section class="story" id="story">
+  <div class="story-visual reveal">
+    <div class="story-img-frame">
+      <div class="pattern-overlay"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;opacity:0.25;">
+          <div style="font-size:5rem;margin-bottom:1rem;">🫕</div>
+          <div style="font-family:'Scheherazade New',serif;font-size:2.5rem;color:var(--gold);">حلب</div>
+        </div>
+      </div>
+      <div class="arabesque-inner"></div>
+    </div>
+    <div class="story-ornament"></div>
+    <div class="story-ornament2"></div>
+    <div class="story-badge">
+      <span class="num">100%</span>
+      <span class="lbl">Maison</span>
+    </div>
+  </div>
+
+  <div class="story-text" id="story">
+    <div class="reveal reveal-delay-1">
+      <p class="section-label">Notre Histoire</p>
+      <h2 class="section-title">Un voyage au cœur de la<br><em>Syrie authentique</em></h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <p class="section-text">
+        Au cœur de Quaregnon, La Maison Orientale vous transporte dans un voyage culinaire à travers les saveurs profondes et généreuses de la Syrie. Chaque plat est préparé avec amour, selon des recettes transmises de génération en génération.
+      </p>
+      <br>
+      <p class="section-text">
+        Nous sélectionnons avec soin les épices les plus nobles — cannelle, sumac, safran, cumin — pour vous offrir une expérience authentique, loin des clichés, proche du vrai goût de l'Orient.
+      </p>
+    </div>
+    <div class="reveal reveal-delay-3" style="margin-top:2.5rem;display:flex;gap:3rem;">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold);font-weight:300;">12+</div>
+        <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);">Années d'expérience</div>
+      </div>
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold);font-weight:300;">40+</div>
+        <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);">Plats au menu</div>
+      </div>
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold);font-weight:300;">★ 4.9</div>
+        <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);">Note clients</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUISINE -->
+
+<section class="cuisine" id="cuisine">
+  <div class="cuisine-header">
+    <p class="section-label reveal">Nos Spécialités</p>
+    <h2 class="section-title reveal reveal-delay-1">L'âme de la cuisine<br><em>syrienne</em></h2>
+    <div class="gold-line reveal reveal-delay-2"></div>
+    <p class="section-text reveal reveal-delay-3">Des saveurs d'Orient sublimées par des épices ancestrales, des viandes tendres et des légumes du marché.</p>
+  </div>
+
+  <div class="dishes-grid reveal">
+    <div class="dish-card">
+      <div class="dish-visual">
+        <div class="dish-bg dish-1">
+          <img class="dish-real-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Shawarma_from_Zaatar_w_Zeit.jpg/1280px-Shawarma_from_Zaatar_w_Zeit.jpg" alt="Shawarma Maison" loading="lazy" onerror="this.style.display='none'"/>
+        </div>
+        <div class="dish-overlay">
+          <div class="dish-tag">Signature</div>
+          <div class="dish-name">Shawarma Maison</div>
+          <div class="dish-desc">Viande marinée aux épices de Damas, sauce à l'ail, légumes croquants</div>
+        </div>
+      </div>
+    </div>
+
+```
+<div class="dish-card">
+  <div class="dish-visual">
+    <div class="dish-bg dish-2">
+      <img class="dish-real-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Kebab_de_pollo.jpg/1280px-Kebab_de_pollo.jpg" alt="Kebab Halabi" loading="lazy" onerror="this.style.display='none'"/>
+    </div>
+    <div class="dish-overlay">
+      <div class="dish-name">Kebab Halabi</div>
+      <div class="dish-desc">Brochettes d'Alep aux herbes</div>
+    </div>
+  </div>
+</div>
+
+<div class="dish-card">
+  <div class="dish-visual">
+    <div class="dish-bg dish-3">
+      <img class="dish-real-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Hummus_from_The_Nile.jpg/1280px-Hummus_from_The_Nile.jpg" alt="Houmous & Meze" loading="lazy" onerror="this.style.display='none'"/>
+    </div>
+    <div class="dish-overlay">
+      <div class="dish-tag">Végétarien</div>
+      <div class="dish-name">Fattoush & Houmous</div>
+      <div class="dish-desc">Salade fraîche & crème de pois chiches</div>
+    </div>
+  </div>
+</div>
+
+<div class="dish-card">
+  <div class="dish-visual">
+    <div class="dish-bg dish-4">
+      <img class="dish-real-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Baklava_%281%29.jpg/1280px-Baklava_%281%29.jpg" alt="Baklava" loading="lazy" onerror="this.style.display='none'"/>
+    </div>
+    <div class="dish-overlay">
+      <div class="dish-name">Baklava & Desserts</div>
+      <div class="dish-desc">Pâte feuilletée, pistaches, miel de fleur d'oranger</div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- MENU PREVIEW -->
+
+<section class="menu" id="menu">
+  <div>
+    <p class="section-label reveal">Notre Menu</p>
+    <h2 class="section-title reveal reveal-delay-1">Une table<br><em>généreuse</em></h2>
+    <div class="gold-line reveal"></div>
+
+```
+<div class="menu-categories reveal">
+  <button class="menu-cat active" onclick="filterMenu(this,'entrees')">Entrées</button>
+  <button class="menu-cat" onclick="filterMenu(this,'plats')">Plats</button>
+  <button class="menu-cat" onclick="filterMenu(this,'desserts')">Desserts</button>
+  <button class="menu-cat" onclick="filterMenu(this,'boissons')">Boissons</button>
+</div>
+
+<div class="menu-items reveal reveal-delay-2" id="menu-list">
+  <!-- Dynamically filled by JS -->
+</div>
+```
+
+  </div>
+
+  <div class="menu-visual reveal reveal-delay-3">
+    <div class="menu-feature-img">
+      <div class="menu-feature-emoji">🫕</div>
+      <div class="menu-feature-border"></div>
+      <div style="position:absolute;bottom:1.5rem;left:1.5rem;">
+        <div style="font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:0.3rem;">Plat du moment</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--ivory);">Maqlouba au poulet</div>
+      </div>
+    </div>
+    <div class="menu-quote">
+      <p>« La cuisine syrienne, c'est l'art de mettre toute une culture dans une assiette. »</p>
+      <cite>— La Maison Orientale</cite>
+    </div>
+  </div>
+</section>
+
+<!-- AMBIANCE -->
+
+<section class="ambiance">
+  <div class="ambiance-bg"></div>
+  <div class="ambiance-pattern"></div>
+  <div class="ambiance-content">
+    <p class="section-label reveal">L'Expérience</p>
+    <p class="ambiance-text reveal reveal-delay-1">
+      Fermez les yeux — <strong>sentez le cumin</strong>, la cannelle et la rose.<br>
+      Ouvrez-les — vous êtes à <strong>Quaregnon</strong>, mais votre âme est en Syrie.
+    </p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+
+<section class="testimonials">
+  <div class="testimonials-header">
+    <p class="section-label reveal">Avis Vérifiés</p>
+    <h2 class="section-title reveal reveal-delay-1">Ce que disent<br><em>nos clients</em></h2>
+    <div class="gold-line reveal"></div>
+
+```
+<!-- Ratings badges -->
+<div class="reveal reveal-delay-2" style="display:inline-flex;align-items:stretch;gap:0;margin-top:1.5rem;border:1px solid rgba(201,151,74,0.2);flex-wrap:wrap;justify-content:center;">
+  <!-- Google -->
+  <div style="text-align:center;padding:1.2rem 2rem;background:rgba(201,151,74,0.05);">
+    <div style="font-size:0.65rem;letter-spacing:0.2em;color:var(--text-light);text-transform:uppercase;margin-bottom:0.4rem;">Google Maps</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--gold);line-height:1;font-weight:300;">4,4</div>
+    <div style="font-size:0.95rem;color:var(--gold);letter-spacing:0.08em;">★★★★☆</div>
+    <div style="font-size:0.65rem;color:var(--text-light);margin-top:0.2rem;">34 avis</div>
+  </div>
+  <div style="width:1px;background:rgba(201,151,74,0.15);"></div>
+  <!-- Takeaway -->
+  <div style="text-align:center;padding:1.2rem 2rem;background:rgba(201,151,74,0.05);">
+    <div style="font-size:0.65rem;letter-spacing:0.2em;color:var(--text-light);text-transform:uppercase;margin-bottom:0.4rem;">Takeaway.com</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--gold);line-height:1;font-weight:300;">4,5</div>
+    <div style="font-size:0.95rem;color:var(--gold);letter-spacing:0.08em;">★★★★½</div>
+    <div style="font-size:0.65rem;color:var(--text-light);margin-top:0.2rem;">18 avis</div>
+    <a href="https://www.takeaway.com/be-fr/menu/la-maison-orientale" target="_blank" style="display:inline-block;margin-top:0.5rem;font-size:0.65rem;color:var(--gold);text-decoration:underline;letter-spacing:0.1em;">Voir →</a>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;">
+        <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#C9974A,#8B6228);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--dark);font-size:1rem;">S</div>
+        <div>
+          <div style="font-size:0.85rem;color:var(--ivory);font-weight:400;">Samira B.</div>
+          <div style="font-size:0.68rem;color:var(--text-light);letter-spacing:0.05em;">Quaregnon · Takeaway ★★★★★</div>
+        </div>
+        <div style="margin-left:auto;font-size:0.65rem;color:var(--text-light);">il y a 2 semaines</div>
+      </div>
+      <p class="testimonial-text">« Franchement, une excellente découverte ! La viande est tendre, les épices bien dosées et les portions très généreuses. On sent que c'est vraiment fait maison. Je recommande vivement ! »</p>
+    </div>
+
+```
+<div class="testimonial-card reveal reveal-delay-1">
+  <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;">
+    <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7A5C38,#C9974A);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--dark);font-size:1rem;">K</div>
+    <div>
+      <div style="font-size:0.85rem;color:var(--ivory);font-weight:400;">Karim M.</div>
+      <div style="font-size:0.68rem;color:var(--text-light);letter-spacing:0.05em;">Mons · Takeaway ★★★★★</div>
+    </div>
+    <div style="margin-left:auto;font-size:0.65rem;color:var(--text-light);">il y a 1 mois</div>
+  </div>
+  <p class="testimonial-text">« Le meilleur restaurant oriental de la région sans hésiter. Le poulet grillé est divin, sauce à l'ail incroyable. La livraison était rapide et tout était encore chaud à l'arrivée. 10/10 ! »</p>
+</div>
+
+<div class="testimonial-card reveal reveal-delay-2">
+  <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;">
+    <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#8B1A1A,#C9974A);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--dark);font-size:1rem;">N</div>
+    <div>
+      <div style="font-size:0.85rem;color:var(--ivory);font-weight:400;">Nadia V.</div>
+      <div style="font-size:0.68rem;color:var(--text-light);letter-spacing:0.05em;">Quaregnon · Takeaway ★★★★★</div>
+    </div>
+    <div style="margin-left:auto;font-size:0.65rem;color:var(--text-light);">il y a 3 semaines</div>
+  </div>
+  <p class="testimonial-text">« Accueil super chaleureux, cadre agréable et nourriture absolument délicieuse. On a commandé le grill mixte — une merveille ! Des saveurs vraiment authentiques. On reviendra à coup sûr. »</p>
+</div>
+```
+
+  </div>
+
+  <div class="reveal" style="text-align:center;margin-top:3rem;">
+    <a href="https://www.takeaway.com/be-fr/menu/la-maison-orientale" target="_blank" class="btn-outline">Laisser un avis sur Takeaway</a>
+  </div>
+</section>
+
+<!-- INFO & RESERVATION -->
+
+<section class="info" id="contact">
+  <div class="info-block">
+    <p class="section-label reveal">Informations</p>
+    <h2 class="section-title reveal reveal-delay-1">Venez nous<br><em>rendre visite</em></h2>
+    <div class="gold-line reveal"></div>
+
+```
+<div class="reveal reveal-delay-2">
+  <div class="info-item">
+    <div class="info-icon">📍</div>
+    <div>
+      <div class="info-label">Adresse</div>
+      <div class="info-value"><strong>La Maison Orientale</strong><br>Rue Jules Destrée 219<br>7390 Quaregnon, Belgique</div>
+    </div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">🕐</div>
+    <div>
+      <div class="info-label">Horaires d'ouverture</div>
+      <div class="info-value">
+        <strong>Lundi, Mer – Ven :</strong> 11h00 – 22h00<br>
+        <strong>Samedi – Dimanche :</strong> 11h00 – 22h30<br>
+        <span style="color:var(--gold);font-size:0.8rem;">Fermé le mardi</span>
+      </div>
+    </div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">📞</div>
+    <div>
+      <div class="info-label">Téléphone</div>
+      <div class="info-value"><a href="tel:+32498672262" style="color:inherit;text-decoration:none;"><strong>0498 67 22 62</strong></a><br><span style="font-size:0.8rem;color:var(--text-light);">Appel & WhatsApp</span></div>
+    </div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">🛵</div>
+    <div>
+      <div class="info-label">Commande en ligne</div>
+      <div class="info-value">
+        <a href="https://www.takeaway.com/be-fr/menu/la-maison-orientale" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--gold);color:var(--dark);padding:0.5rem 1.1rem;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;text-decoration:none;transition:background 0.3s;" onmouseover="this.style.background='#E8C27A'" onmouseout="this.style.background='var(--gold)'">
+          🛵 Commander sur Takeaway
+        </a>
+        <div style="margin-top:0.5rem;font-size:0.75rem;color:var(--text-light);">Livraison · À emporter · Min. 15€</div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="reservation-form reveal reveal-delay-2" id="reservation">
+    <p class="section-label">Réservation</p>
+    <h2 class="section-title" style="margin-bottom:2rem;">Réservez<br><em>votre table</em></h2>
+
+```
+<div class="form-row">
+  <div class="form-group">
+    <label class="form-label">Prénom</label>
+    <input class="form-input" type="text" placeholder="Mohamed"/>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Nom</label>
+    <input class="form-input" type="text" placeholder="Dupont"/>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group">
+    <label class="form-label">Date</label>
+    <input class="form-input" type="date"/>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Heure</label>
+    <select class="form-select form-input">
+      <option>12h00</option><option>12h30</option>
+      <option>13h00</option><option>13h30</option>
+      <option>19h00</option><option>19h30</option>
+      <option>20h00</option><option>20h30</option>
+      <option>21h00</option><option>21h30</option>
+    </select>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group">
+    <label class="form-label">Nombre de personnes</label>
+    <select class="form-select form-input">
+      <option>1 personne</option>
+      <option>2 personnes</option>
+      <option>3 personnes</option>
+      <option>4 personnes</option>
+      <option>5 personnes</option>
+      <option>6+ personnes</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Téléphone</label>
+    <input class="form-input" type="tel" placeholder="+32 4XX XX XX XX"/>
+  </div>
+</div>
+<div class="form-group">
+  <label class="form-label">Message (optionnel)</label>
+  <input class="form-input" type="text" placeholder="Allergies, occasion spéciale…"/>
+</div>
+<button class="form-submit" onclick="submitReservation()">Confirmer la Réservation</button>
+```
+
+  </div>
+</section>
+
+<!-- MAP STRIP -->
+
+<div class="map-strip">
+  <div>
+    <p class="section-label" style="margin-bottom:0.4rem;">Nous trouver</p>
+    <p class="map-address">Rue Jules Destrée 219, <span>7390 Quaregnon</span></p>
+  </div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-left:auto;">
+    <a href="https://www.google.com/maps/search/La+Maison+Orientale+Rue+Jules+Destr%C3%A9e+219+Quaregnon" target="_blank" class="btn-outline">📍 Google Maps</a>
+    <a href="https://www.takeaway.com/be-fr/menu/la-maison-orientale" target="_blank" class="btn-primary">🛵 Commander en ligne</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">البيت الشرقي</div>
+      <p class="footer-tagline">La Maison Orientale</p>
+      <p style="font-size:0.82rem;color:var(--text-light);font-weight:300;line-height:1.7;max-width:300px;">
+        Spécialités syriennes du Moyen-Orient · Halal · Livraison disponible<br>
+        Rue Jules Destrée 219, 7390 Quaregnon
+      </p>
+      <div class="footer-social" style="margin-top:1.5rem;">
+        <a href="https://www.instagram.com/la_maisonorientale" target="_blank" class="social-link" title="Instagram">📷</a>
+        <a href="https://www.facebook.com" target="_blank" class="social-link" title="Facebook">f</a>
+        <a href="tel:+32498672262" class="social-link" title="WhatsApp">📱</a>
+      </div>
+    </div>
+
+```
+<div class="footer-col">
+  <p class="footer-col-title">Navigation</p>
+  <ul>
+    <li><a href="#story">Notre Histoire</a></li>
+    <li><a href="#cuisine">Nos Spécialités</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#reservation">Réservation</a></li>
+  </ul>
+</div>
+
+<div class="footer-col">
+  <p class="footer-col-title">Horaires</p>
+  <ul>
+    <li><a href="#">Lun : 11h00 – 22h00</a></li>
+    <li><a href="#" style="color:var(--red,#8B1A1A);">Mar : Fermé</a></li>
+    <li><a href="#">Mer – Ven : 11h00 – 22h00</a></li>
+    <li><a href="#">Sam – Dim : 11h00 – 22h30</a></li>
+  </ul>
+  <div style="margin-top:1.5rem;">
+    <p class="footer-col-title">Commander</p>
+    <a href="https://www.takeaway.com/be-fr/menu/la-maison-orientale" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--gold);color:var(--dark);padding:0.5rem 1rem;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:400;text-decoration:none;transition:background 0.3s;" onmouseover="this.style.background='#E8C27A'" onmouseout="this.style.background='var(--gold)'">
+      🛵 Takeaway.com
+    </a>
+  </div>
+</div>
+```
+
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 La Maison Orientale — Tous droits réservés</p>
+    <p class="footer-arabic">بالهناء والشفاء</p>
+    <p class="footer-copy">Quaregnon, Belgique</p>
+  </div>
+</footer>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast">✓ Votre réservation a été envoyée avec succès !</div>
+
+<!-- FLOATING TAKEAWAY BUTTON -->
+
+<a href="https://www.takeaway.com/be-fr/menu/la-maison-orientale" target="_blank" id="floatBtn" style="
+position: fixed;
+bottom: 2rem;
+right: 2rem;
+background: var(--gold);
+color: var(--dark);
+padding: 0.8rem 1.4rem;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+font-size: 0.78rem;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+font-weight: 400;
+text-decoration: none;
+font-family: 'Lato', sans-serif;
+box-shadow: 0 4px 24px rgba(201,151,74,0.35);
+z-index: 200;
+transition: background 0.3s, transform 0.2s;
+animation: floatPulse 3s ease-in-out infinite;
+" onmouseover="this.style.background='#E8C27A';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">
+🛵 Commander sur Takeaway
+</a>
+
+<style>
+@keyframes floatPulse {
+  0%, 100% { box-shadow: 0 4px 24px rgba(201,151,74,0.35); }
+  50% { box-shadow: 0 4px 36px rgba(201,151,74,0.6); }
+}
+</style>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Menu data
+  const menuData = {
+    entrees: [
+      { name: 'Houmous Maison', desc: 'Crème de pois chiches, huile d\'olive, paprika', price: '6,50 €' },
+      { name: 'Fattoush', desc: 'Salade fraîche aux herbes, sumac, pain croustillant', price: '7,00 €' },
+      { name: 'Foul Medames', desc: 'Fèves mijotées, citron, ail, cumin', price: '6,00 €' },
+      { name: 'Baba Ganoush', desc: 'Caviar d\'aubergine fumé, sésame, menthe', price: '7,50 €' },
+      { name: 'Kibbeh frit', desc: 'Boulettes de boulgour farcies à la viande épicée', price: '8,50 €' },
+    ],
+    plats: [
+      { name: 'Shawarma Maison', desc: 'Poulet mariné, sauce à l\'ail, légumes, pain', price: '12,50 €' },
+      { name: 'Kebab Halabi', desc: 'Brochettes d\'agneau aux épices d\'Alep', price: '16,00 €' },
+      { name: 'Mansaf Royal', desc: 'Agneau confit, riz au safran, yaourt fermenté', price: '19,50 €' },
+      { name: 'Maqlouba', desc: 'Riz aux légumes, poulet rôti, amandes grillées', price: '17,00 €' },
+      { name: 'Moussaka Syrienne', desc: 'Aubergines, tomates, viande hachée, épices', price: '14,50 €' },
+    ],
+    desserts: [
+      { name: 'Baklava Maison', desc: 'Pâte feuilletée, pistaches, miel de fleur d\'oranger', price: '5,50 €' },
+      { name: 'Knafeh', desc: 'Fromage chaud, sirop de rose, pistaches concassées', price: '6,50 €' },
+      { name: 'Mouhallabieh', desc: 'Crème de riz à la fleur d\'oranger', price: '5,00 €' },
+    ],
+    boissons: [
+      { name: 'Jus de Grenade Frais', desc: 'Pressé à la minute, vitaminé', price: '4,00 €' },
+      { name: 'Ayran', desc: 'Yaourt salé battu, tradition ottomane', price: '3,00 €' },
+      { name: 'Thé à la Menthe', desc: 'Menthe fraîche, sucre de canne', price: '2,50 €' },
+      { name: 'Café Arabe', desc: 'Café à la cardamome, servi avec dattes', price: '3,50 €' },
+    ]
+  };
+
+  function renderMenu(cat) {
+    const list = document.getElementById('menu-list');
+    list.innerHTML = menuData[cat].map(item => `
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <div class="menu-item-name">${item.name}</div>
+          <div class="menu-item-desc">${item.desc}</div>
+        </div>
+        <div class="menu-item-price">${item.price}</div>
+      </div>
+    `).join('');
+  }
+
+  function filterMenu(btn, cat) {
+    document.querySelectorAll('.menu-cat').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderMenu(cat);
+  }
+
+  renderMenu('entrees');
+
+  // Toast reservation
+  function submitReservation() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  }
+</script>
+
+</body>
+</html>
